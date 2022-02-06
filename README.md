@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# coding-challenge-front-end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Cove coding challenge! 👋
 
-## Available Scripts
+Adam and Matt just signed a deal with a large real estate owner 🎉. Before we can launch our *powered by cove* platform in their office building, we need to get a reservation system up and going. 
 
-In the project directory, you can run:
+In our backlog grooming Jeremy (our Product person) presented the problem we are trying solve for our users:
 
-### `npm start`
+*As Angela at Allsafe (office user), I’d like to book a the large conference room for the strategy meeting and I need to find a time when it's avaiable.*
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The team broke this problem down and decided to start first with this User Story:
+- As an office user, I’d like to see the schedule for a selected room and date, because I need to find a time when it's available.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+For this challenge, we've provided you with a simple application that is meant to display a list of reservations and allows the user to filter by date and room. Your job is to complete this application so that it functions as intended.
 
-### `npm test`
+Questions along the way? Don't hesitate to reach out to engineering@cove.is!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the App
 
-### `npm run build`
+- `yarn`
+- `yarn start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Part 1
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Your first objective is to take a look at the TODOs in [`App.js`](./src/App.js). We'd simply like you to "wire-up" the existing components using React [Hooks](https://reactjs.org/docs/hooks-intro.html). No need to change the UI at this stage in terms of styling or functionality, apart from hooking up the components.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You'll need to:
+- manage the state for both filters (`DatePicker` & `DropDownSelect`)
+- fetch a list of reservations from this endpoint: https://cove-coding-challenge-api.herokuapp.com/reservations
+- populate `DropDownSelect` with options based on the rooms you get back from the endpoint (e.g. "Room A", "Room B", ...)
+- pass a filtered version of the reservations you get back to `ReservationList`
 
-### `npm run eject`
+After this step, the user should be able to change the value of both filters, and they should only see reservations that match their filters.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Explain your approach to Part 1
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+TODO: Explain your approach here
+- "Angela at Allsafe" - Nice Mr Robot reference.  😎  I could just throw out all the requirements, _since she's dead_, but I'll still complete the challenge.  😁
+- I converted this to a `react-scripts` app.  Obviously, if this were a "real" company app, this wouldn't be an option.  But the Webpack config in the demo app was, umm... suboptimal, and I didn't want to spend copious amounts of time in a mere demo app try to fix the Webpack config.
+- 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Part 2
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Your next job is to make the list of reservations look a little nicer. Ryan, the designer on our team made some mock-ups for the desktop and mobile UI. Take a look at the TODO in [`ReservationList.js`](src/common/components/ReservationList.js) and try to match Ryan's mock-ups below. Your design should be responsive, using a css breakpoint to switch between the desktop and mobile layouts. 
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Desktop:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="public/imgs/mock-up-desktop.png" alt="desktop" />
 
-### Code Splitting
+Mobile:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<img src="public/imgs/mock-up-mobile.png" alt="mobile" width="300"/>
 
-### Analyzing the Bundle Size
+Please don't worry about making it a pixel-perfect match with the designs! As Devs we collaborate closely with Ryan and it's a give and take.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Feel free to use whatever approach to styling you wish. No need to mirror what is already in the project. Some approaches that we consider valid:
 
-### Making a Progressive Web App
+- [Styled Components](https://styled-components.com/)
+- [React-JSS](https://cssinjs.org/react-jss/?v=v10.6.0)
+- [Tailwind](https://tailwindcss.com/)
+- SASS/LESS
+- CSS Modules
+- or just plain CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Explain your approach to Part 2
 
-### Advanced Configuration
+TODO: Explain your approach here
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Part 3
 
-### Deployment
+For this last step, we'd like to try and understand how you approach testing. Our product person Jeremy already has a bunch of reservations related User Stories lined up. In the backlog grooming, Rachel pointed out that we should add some good test coverage now, since we'll likely add more complexity to our reservation app in the future.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+We've started working on a util called `isScheduleConflict` to check for reservation conflicts. `isScheduleConflict` takes a list of reservations and returns `true` if any reservation in the list conflicts with another in the list (see `utils.js` for more details). Your job is to complete this util and add more test coverage. Look for the TODOs in [`utils.js`](src/utils.js) and [`utils.test.js`](src/utils.test.js) and use `yarn test` to execute the tests.
 
-### `npm run build` fails to minify
+Assumptions you can make:
+- `reservations` will always be an array of valid reservations
+- A valid reservation always has a start/end time and the end time will always be after the start time
+- Do NOT hook up the util to the user interface
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+NOTE: Don't worry about the efficiency of your solution:
+- If you know an efficient solution, we'd love to see it and hear why you favor it.
+- However, we are more focused on readable and maintainable code.
+
+### Explain your approach to Part 3
+
+TODO: Explain your approach here
+
+## One last thing...
+
+Write up a few notes about your approach to each Part in the README sections above. Finally, search the repo for `TODO:`. If you see no search results, then you are done! 👏
