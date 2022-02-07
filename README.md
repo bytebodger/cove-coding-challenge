@@ -93,7 +93,12 @@ NOTE: Don't worry about the efficiency of your solution:
 
 ### Explain your approach to Part 3
 
-TODO: Explain your approach here
+Explain your approach here
+
+- I finished `isScheduleConflict()`.
+- I created `sampleReservations`, which mirrors the values that are currently returned from your endpoint, and ensured that there are no dups.
+- I added a new reservation with a conflicting end time and ensured that it detects the dup.
+- I added a new reservation with a conflicting start time and ensured that it detects the dup.
 
 ## One last thing...
 
