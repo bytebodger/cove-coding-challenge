@@ -34,10 +34,15 @@ After this step, the user should be able to change the value of both filters, an
 
 ### Explain your approach to Part 1
 
-TODO: Explain your approach here
+Explain your approach here
 - "Angela at Allsafe" - Nice Mr Robot reference.  😎  I could just throw out all the requirements, _since she's dead_, but I'll still complete the challenge.  😁
 - I converted this to a `react-scripts` app.  Obviously, if this were a "real" company app, this wouldn't be an option.  But the Webpack config in the demo app was, umm... suboptimal, and I didn't want to spend copious amounts of time in a mere demo app try to fix the Webpack config.
-- 
+- Reservations are loaded with a custom Hook that leverages Axios for the asynchronous `GET`.
+- I used my `@toolz/use-constructor` custom NPM package to ensure that the `GET` is triggered only once upon application load.
+- I used my `@toolz/allow-react` custom NPM package to ensure the integrity of function arguments.
+- PLEASE NOTE: The instructions only gave me a single endpoint - for reservations.  And I'm supposed to _infer_ the list of rooms from the existing reservations.  However, this couldn't be a "proper" approach for a true, live application.  Because this approach will only allow me to display a list of rooms _that already have at least one reservation_.  Ideally, there should be a separate "rooms" endpoint.  Because, under this current approach, a room that currently has NO reservations will never show up in the drop-down select.  (ALSO NOTE: I tried to do a `GET` against https://cove-coding-challenge-api.herokuapp.com/rooms, just to see if maybe the endpoint exists, but is not mentioned in these instructions.  But there was no endpoint there to hit.)
+- It seems logical to me that these results should also be _sorted_ by time.  But the mockups provided specifically show results that are _not_ sorted by time.  So I did not include time-filtering in this solution.
+
 
 ## Part 2
 
@@ -65,7 +70,11 @@ Feel free to use whatever approach to styling you wish. No need to mirror what i
 
 ### Explain your approach to Part 2
 
-TODO: Explain your approach here
+Explain your approach here
+
+- I chose to use Material UI.  It wasn't in your list of "valid approaches".  But the instructions said "to use whatever approach to styling you wish", Material UI has a large install-base, and I'm already very familiar with it.
+- I used my `@toolz/use-material-ui` custom NPM package because I don't like the responsive naming conventions inherent in Material UI.
+- I used my `@toolz/use-viewport` custom NPM package to handle responsive breakpoints.
 
 ## Part 3
 
